@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace MPP_TextAnalyzer.TextProcessor
 {
-    public class TextProcessor
+    public static class TextProcessor
     {
 
-        private static String[] words;
-        public static String[] Words
-        {
-            get { return words; }
-            set { words = value; }
-        }
         public static Boolean FindInText(String word,String[] words)
         {
             if (Array.IndexOf(words,word) != -1)

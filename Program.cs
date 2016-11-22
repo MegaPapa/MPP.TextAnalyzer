@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using MPP_TextAnalyzer.TextProcessor;
 using System.Linq.Expressions;
+using MPP_TextAnalyzer.ExpressionBuilder.ExpressionTreeCreator;
+using MPP_TextAnalyzer.Filter;
 
 namespace MPP_TextAnalyzer
 {
@@ -12,15 +14,12 @@ namespace MPP_TextAnalyzer
     {
         static void Main(string[] args)
         {
-        
-            ExpressionTreeCreator.ExpressionTreeCreator tree = new ExpressionTreeCreator.ExpressionTreeCreator("Maxim@AND@(@Minsk@OR@Molodechno@)@OR@(@Kek@AND@Lol@)");
-            
-            String[] text = { "Kek","Lol","Yoba" };
-            Func<String[],Boolean> myLambda = tree.CreateLambda();
-            
-            Console.WriteLine(myLambda(text));
-            String[] words = { "Maxim","Minskf","NOMAZ","LELKEKES","ZZZZZ","SASAI","U","LUKOMORIA","DUB","ZELENII" };
-            Console.WriteLine(myLambda(words));
+
+            Filter.Filter filter = new Filter.Filter();
+            filter.CreateFilter("Maxim@AND@(@Minsk@OR@Molodechno@)@AND@NOT@Durachek");
+            String[] words = { "Maxim","Durasim","Ehal","V","On","Molodechno" };
+            for (int i = 0; i < 1000; i++ )
+                Console.WriteLine(filter.Verify(words));
             Console.ReadKey();
             
         }
