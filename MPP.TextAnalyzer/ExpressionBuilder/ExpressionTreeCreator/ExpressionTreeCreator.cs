@@ -15,10 +15,13 @@ namespace MPP_TextAnalyzer.ExpressionBuilder.ExpressionTreeCreator
     {
         private List<Object> polandList;
         private List<String> filterList;
+        private readonly Dictionary<Expression, Func<Boolean>> Cache;
+
         public ExpressionTreeCreator(String filter)
         {
             filterList = filter.Split(FILTER_SPLITTER).ToList();
             polandList = new List<Object>();
+            Cache = new Dictionary<Expression,Func<Boolean>>();
         }
 
         private void RemoveElemetsFromList(int count, int index)
@@ -108,9 +111,14 @@ namespace MPP_TextAnalyzer.ExpressionBuilder.ExpressionTreeCreator
 
         private Boolean InvokeTreeLambda(String[] words)
         {
+            Func<Boolean> lambda;
             var result = (Expression)polandList.ElementAt(0);
-            LambdaExpression lambdaExpression = Expression.Lambda(result);
-            var lambda = (Func<Boolean>)lambdaExpression.Compile();
+            if (!Cache.TryGetValue(result, out lambda))
+            {
+                LambdaExpression lambdaExpression = Expression.Lambda(result);
+                lambda = (Func<Boolean>)lambdaExpression.Compile();
+                Cache[result] = lambda;
+            }
             return lambda.Invoke();
         }
 

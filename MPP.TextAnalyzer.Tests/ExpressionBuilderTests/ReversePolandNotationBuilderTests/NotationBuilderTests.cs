@@ -9,7 +9,7 @@ namespace MPP_TextAnalyzerTests.ExpressionBuilderTests.ReversePolandNotationBuil
     public class NotationBuilderTests
     {
         [TestMethod]
-        public void Input_A_AND_B_OR_C_returned_TripleFalse_OR_AND()
+        public void CreatePolandList_whenAAndBORC_shouldTripleFalseORAND()
         {
             //arrange
             Char splitter = '@';

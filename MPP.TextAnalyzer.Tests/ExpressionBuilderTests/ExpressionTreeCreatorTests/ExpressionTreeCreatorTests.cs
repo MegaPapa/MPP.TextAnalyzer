@@ -8,7 +8,7 @@ namespace MPP_TextAnalyzerTests.ExpressionBuilderTests.ExpressionTreeCreatorTest
     public class ExpressionTreeCreatorTests
     {
         [TestMethod]
-        public void TestExpressionTree_OnTrue()
+        public void CreateLambda_WhenTheFilterIsSpecified_ShouldCreateCorrectLambda()
         {
             //arrange
             Func<String[], Boolean> tmpFunc;

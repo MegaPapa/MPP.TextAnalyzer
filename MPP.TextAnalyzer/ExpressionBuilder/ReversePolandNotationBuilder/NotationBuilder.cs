@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MPP_TextAnalyzer.TextProcessor;
 
 namespace MPP_TextAnalyzer.ExpressionBuilder.ReversePolandNotationBuilder
 {
@@ -25,11 +26,12 @@ namespace MPP_TextAnalyzer.ExpressionBuilder.ReversePolandNotationBuilder
         {
             stack = new Stack<String>();
             polandList = new List<Object>();
+            TextProcessor.TextProcessor textProcessor = TextProcessor.TextProcessor.getInstance();
             polandList.Clear();
             foreach (String value in filterList)
             {
                 if (Array.IndexOf(OPERATORS, value) == -1) //If current token is not a operator, put Value.FindInText in polandList
-                    polandList.Add(TextProcessor.TextProcessor.FindInText(value, words));
+                    polandList.Add(textProcessor.FindInText(value, words));
                 else if ((!value.Equals(OPERATORS[CLOSE_BRACKET])) && (!value.Equals(OPERATORS[OPEN_BRACKET]))) 
                     stack.Push(value);
                 

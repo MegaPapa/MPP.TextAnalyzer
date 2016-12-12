@@ -8,7 +8,7 @@ namespace MPP_TextAnalyzerTests.TextProcessorTests
     public class TextProcessorTests
     {
         [TestMethod]
-        public void FindWord_resultedTrue()
+        public void FindInText_whenWordInWords_shouldTrue()
         {
             //arrange
             String[] words = { "Cake","is","a","lie" };
@@ -22,7 +22,7 @@ namespace MPP_TextAnalyzerTests.TextProcessorTests
         }
 
         [TestMethod]
-        public void GetText_FromTmpFile()
+        public void GetStringArrayFromFile_whenFilePathIsTrue_shouldTrue()
         {
             //arrange
             String[] actual;

@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Exceptions\NotInitializedFilterException.cs" />
     <Compile Include="ExpressionBuilder\ExpressionTreeCreator\ExpressionTreeCreator.cs" />
     <Compile Include="ExpressionBuilder\Builder.cs" />
     <Compile Include="ExpressionBuilder\ReversePolandNotationBuilder\NotationBuilder.cs" />

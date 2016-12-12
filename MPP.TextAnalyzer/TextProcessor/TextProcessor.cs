@@ -9,29 +9,37 @@ using System.Threading.Tasks;
 
 namespace MPP_TextAnalyzer.TextProcessor
 {
-    public static class TextProcessor
+    public class TextProcessor
     {
+        private static TextProcessor _instance;
 
-        public static String[] GetStringArrayFromFile(String path)
+        public static TextProcessor getInstance()
+        {
+            if (_instance == null)
+            {
+                _instance = new TextProcessor();
+            }
+            return _instance;
+        }
+        public String[] GetStringArrayFromFile(String path)
         {
             if (!File.Exists(path))
                 throw new FileNotFoundException("File not found.");
-            Encoding rusEncoding = Encoding.GetEncoding(1251);
             StringBuilder text = new StringBuilder();
             String tmp;
-            StreamReader streamReader = new StreamReader(@path, rusEncoding);
+            StreamReader streamReader = new StreamReader(@path);
             while ((tmp = (streamReader.ReadLine())) != null)
                 text.Append(tmp);
             return SplitTextOnWords(text.ToString());
         }
 
-        private static String[] SplitTextOnWords(String text)
+        private String[] SplitTextOnWords(String text)
         {
             Char[] punctuationMarks = { ' ', ',', ':', '?', '!',';' };
             return text.Split(punctuationMarks, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        public static Boolean FindInText(String word,String[] words)
+        public Boolean FindInText(String word,String[] words)
         {
             if (Array.IndexOf(words,word) != -1)
                 return true;

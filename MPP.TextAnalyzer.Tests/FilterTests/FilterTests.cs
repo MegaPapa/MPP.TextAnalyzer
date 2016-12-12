@@ -9,7 +9,7 @@ namespace MPP_TextAnalyzerTests.FilterTests
     public class FilterTests
     {
         [TestMethod]
-        public void Filter_returnedTrue()
+        public void Verify_whenFilterAndWordsInitialized_shouldTrue()
         {
             //arrange
             Filter filter = new Filter();
